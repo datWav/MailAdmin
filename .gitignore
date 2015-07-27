@@ -21,3 +21,4 @@ modules.xml
 .rakeTasks
 config/database.yml
 config/secrets.yml
+config/deploy/production.rb
