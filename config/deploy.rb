@@ -2,11 +2,11 @@
 lock '3.4.0'
 
 set :application, 'mail_admin'
-set :repo_url, 'git@github.com:fate83/MailAdmin.git'
+set :repo_url, 'git@github.com:datWav/MailAdmin.git'
 
 # Default branch is :master
-# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
-
+ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
+# set :branch, 'capistrano'
 # Default deploy_to directory is /var/www/my_app_name
 # set :deploy_to, '/var/www/my_app_name'
 
@@ -23,7 +23,7 @@ set :repo_url, 'git@github.com:fate83/MailAdmin.git'
 # set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
+set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml', 'Passengerfile.json')
 
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle')
@@ -35,7 +35,8 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 # set :keep_releases, 5
 
 set :bundle_jobs, 4
-
+set :passenger_in_gemfile, true
+set :passenger_environment_variables, {port: 5000}
 namespace :deploy do
 
   after :restart, :clear_cache do
